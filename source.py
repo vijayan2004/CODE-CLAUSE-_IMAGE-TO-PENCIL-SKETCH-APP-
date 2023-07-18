@@ -36,7 +36,7 @@ if file_image:
     sketch_pil = Image.fromarray(final_sketch.astype('uint8'), 'L')
     sketch_pil.save(buf, format="JPEG")
     byte_img = buf.getvalue()
-    if st.download_button("Download Sketch Images", byte_img, filename="sketch.jpg", mime="image/jpeg"):
+    if st.download_button("Download Sketch Images", byte_img, file_name="sketch.jpg", mime="image/jpeg"):
         im_pil = Image.fromarray(final_sketch)
         im_pil.save('final_image.jpeg')
         st.write('Download completed')
