@@ -33,7 +33,8 @@ if file_image:
 
 
     buf = BytesIO()
-    final_sketch.save(buf, format="JPEG")
+    sketch_pil = Image.fromarray(final_sketch.astype('uint8'), 'RGB')
+    sketch_pil.save(buf, format="JPEG")
     byte_img = buf.getvalue()
     if st.download_button("Download Sketch Images", byte_img, filename="sketch.jpg", mime="image/jpeg"):
         im_pil = Image.fromarray(final_sketch)
