@@ -29,7 +29,7 @@ if file_image:
     with two:
         st.write("**Output Pencil Sketch**")
         st.image(final_sketch, use_column_width=True)
-    if st.button("Download Sketch Images"):
+    if st.download_button("Download Sketch Images", final_sketch):
         im_pil = Image.fromarray(final_sketch)
         im_pil.save('final_image.jpeg')
         st.write('Download completed')
