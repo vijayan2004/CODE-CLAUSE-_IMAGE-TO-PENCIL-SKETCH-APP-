@@ -2,6 +2,7 @@ import streamlit as st
 import numpy as np 
 from PIL import Image 
 import cv2 
+from io import BytesIO
 
 def dodgeV2(x, y):
     return cv2.divide(x, 255 - y, scale=256)
@@ -14,7 +15,7 @@ def pencilsketch(inp_img):
     return(final_img)
 
 
-st.title("PencilSketch App")
+st.title("Sketch My Pic")
 st.write("This Web App is to help convert your photos to realistic Pencil Sketches") 
 
 file_image = st.sidebar.file_uploader(label = "Take a pic of you to be sketched out")
@@ -29,7 +30,12 @@ if file_image:
     with two:
         st.write("**Output Pencil Sketch**")
         st.image(final_sketch, use_column_width=True)
-    if st.download_button("Download Sketch Images", final_sketch):
+
+
+    buf = BytesIO()
+    final_sketch.save(buf, format="JPEG")
+    byte_img = buf.getvalue()
+    if st.download_button("Download Sketch Images", byte_img, filename="sketch.jpg", mime="image/jpeg"):
         im_pil = Image.fromarray(final_sketch)
         im_pil.save('final_image.jpeg')
         st.write('Download completed')
