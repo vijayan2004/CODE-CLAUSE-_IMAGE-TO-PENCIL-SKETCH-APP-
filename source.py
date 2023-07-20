@@ -18,7 +18,7 @@ def pencilsketch(inp_img):
 st.title("Sketch My Pic")
 st.write("This Web App is to help convert your photos to realistic Pencil Sketches") 
 
-file_image = st.sidebar.file_uploader(label = "Take a pic of you to be sketched out")
+file_image = st.file_uploader(label = "Take a pic of you to be sketched out")
 
 if file_image:
     input_img = Image.open(file_image)
